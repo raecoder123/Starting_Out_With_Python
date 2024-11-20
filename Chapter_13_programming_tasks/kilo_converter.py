@@ -1,46 +1,23 @@
-import tkinter
-import tkinter.messagebox
+import tkinter as tk
+from tkinter import messagebox
 
-class KiloConverterGUI:
-    def __init__(self):
-        self.main_window = tkinter.Tk()
+# Function to convert Fahrenheit to Celsius
+def convert():
+    # Get the input from the entry box
+    fah = entry.get()
+    # Try to convert it to a float
+    try:
+        fah = float(fah)
+        # Perform the conversion
+        cels = (fah - 32) * 5 / 9
+        # Show the result in a message box
+        messagebox.showinfo("Results", str(fah) + " Fahrenheit is " + str(cels) + " Celsius.")
+    except ValueError:
+        # Show an error if the input is not a number
+        messagebox.showerror("Input Error", "Please enter a valid number.")
 
-        self.top_frame = tkinter.Frame()
-        self.mid_frame = tkinter.Frame()
-        self.bottom_frame = tkinter.Frame()
+# Create the main window
+window = tk.Tk()
+window.title("Fahrenheit to Celsius Converter")
 
-        self.prompt_label = tkinter.Label(self.top_frame, text='Enter a distance in km: ')
-        self.kilo_entry = tkinter.Entry(self.top_frame, width=10)
-
-        self.prompt_label.pack(side='left')
-        self.kilo_entry.pack(side='left')
-
-        self.descr_label = tkinter.Label(self.mid_frame, text='Converted to miles: ')
-
-        self.value = tkinter.StringVar()
-        self.miles_label = tkinter.Label(self.mid_frame, textvariable=self.value)
-
-        self.descr_label.pack(side='left')
-        self.miles_label.pack(side='left')
-
-        self.calc_button = tkinter.Button(self.bottom_frame, text='Convert', command=self.convert)
-        self.quit_button = tkinter.Button(self.bottom_frame, text='Exit', command=self.main_window.destroy)
-
-        self.calc_button.pack(side='left')
-        self.quit_button.pack(side='left')
-
-        self.top_frame.pack()
-        self.mid_frame.pack()
-        self.bottom_frame.pack()
-
-        tkinter.mainloop()
-
-    def convert(self):
-        kilo = float(self.kilo_entry.get())
-
-        miles = kilo * 0.6214
-
-        self.value.set(round(miles, 2))
-
-
-kilo_conv = KiloConverterGUI()
+# Create
